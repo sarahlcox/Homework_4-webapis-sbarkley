@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href= "reset.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href= "style.css" />
     <title>Document</title>
 </head>
@@ -14,32 +13,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Information</title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="Assets/css/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
      <!-- Site Header -->
     <header>
-        <div class="container headercontainer pt-1 pr-1 pb-1 pl-1 mt-3">
-            <div class="row">
-              <div class="col">
-                View Scores
-              </div>
-              <div class="col">
-                Timer:
-              </div>
+        <div class="headercontainer">
+            <div>
+                <nav id="seconds">Time Remaining: <span id="timer">60</span></nav>
             </div>
         </div>
     </header>
-<!-- main section -->
-    <div class="buttoncontainer">
-        BUTTON
+    <!-- main section -->
+    <div id="buttonContainer" class="container">
+        <button type="button" id="test">Test Your Knowledge</button>
+    </div>
+    <br>
+    <div>
+        <button></button>
     </div>
     <div class="container quizcontainer mt-4 mb-4">
-        <div class="row">
+        <div id="question" class="row">
             <div class="col">
                 Quiz Content
+            </div>
+        <div id="answer-buttons" class="row btn-grid">
+            <div class="col">
+                Answer Buttons
             </div>
         </div>
     </div>

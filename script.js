@@ -3,20 +3,15 @@
 // declare global variables - user score, quiz container, high score
 // First function to to start quiz and timer 
 // Timer starts when quiz starts (set interval)  setInterval(someFunction, seconds*1000) 
+// declare someFunction[Create array of questions as objects - questions, options, and/or [booleans]
 var test = document.getElementById('test');
 var timer = document.getElementById('timer');
 var buttonContainer = document.getElementById('buttonContainer');
 var questionContainer = document.getElementById('questionContainer');
-
-// declare someFunction[Create array of questions as objects - questions, options, and/or [booleans]
-// array starts for loop identigy the someFunction, i<x, i++ (doesnt have to be "<" symbol Use === to have a concrete true answer)
-    // Loop through array --> for (var i=0; i<array.length; i++) {
-        // One Question
-        // Use If/else
-        // userScore ++/--
 var score = 0;
 var quizContainer = document.getElementById('quiz');
 var resultsContainer = document.getElementById('submit');
+let questionEl = document.getElementById('question');
 var questions = [
         {
             question: "Question 1?",
@@ -47,14 +42,25 @@ function begin(){
 //this is the behavior behind the begin button
 test.addEventListener('click', begin)
 
-// Rotation of questions for the quiz, within our question array, we need to pull the objects  from the array
+for (var index = 0; index < questions.length; index++) {
+  var element = questions[index].question;
+  questionContainer.textContent=element;
+  console.log(element);
+
+  
+}
+
+// Rotation of questions for the quiz, within our question array, we need to pull the objects  from the array    // Loop through array --> for (var i=0; i<array.length; i++) {
+
+// array starts for loop identigy the someFunction, i<x, i++ (doesnt have to be "<" symbol Use === to have a concrete true answer)
 
 // adds points to score if correct
 // adds points to score if incorrect
-*********
-function nextQuestion (){
-  //first question presented, if you get the question right, you get a point, if it matches 1 of the 3 wrong answers, move on with no point added, deduct time from clock
+// *********
+// function nextQuestion (){
+//   //first question presented, if you get the question right, you get a point, if it matches 1 of the 3 wrong answers, move on with no point added, deduct time from clock
  
+// function selectAnswer()
 
 
 //create function for all right answers, and come up with code to give user 1 point, and have the question go on to next question
