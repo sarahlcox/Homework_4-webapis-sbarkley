@@ -2,11 +2,15 @@
     list-style: none;
     padding-left: 0;
     margin-bottom: 4rem;
+    font-family: 'Montserrat', sans-serif;
+
   }
   
   .high-score {
     font-size: 2.8rem;
     margin-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+
   }
   
   .high-score:hover {
