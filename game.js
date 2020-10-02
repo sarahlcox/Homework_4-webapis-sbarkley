@@ -17,35 +17,35 @@ let availableQuestions=[];
 // declare someFunction[Create array of questions as objects - questions, options, and/or [booleans]//declare global variables
 let questions = [
     {
-        question: "Question 1?",
-        choice1: "<option 1>",
-        choice2: "<option 2>",
-        choice3: "<option 3>",
-        choice4: "<option 4>",
+        question: "What is an anchor tag?",
+        choice1: "<Beginning and/or end of a hypertext link>",
+        choice2: "<An emoji of an anchor>",
+        choice3: "<It is the root directory>",
+        choice4: "<It is a heading tag>",
         answer: 1
       },
       {
-        question: "Question 2?",
-        choice1: "<option 1>",
-        choice2: "<option 2>",
-        choice3: "<option 3>",
-        choice4: "<option 4>",
+        question: "What is string concatenation?",
+        choice1: "<To encase a string in parentheses>",
+        choice2: "<The operation of joining charachter strings end-to-end>",
+        choice3: "<To host your website locally>",
+        choice4: "<A term used in coding to determine a variable>",
         answer: 2
       },
       {
-        question: "Question 3?",
-        choice1: "<option 1>",
-        choice2: "<option 2>",
-        choice3: "<option 3>",
-        choice4: "<option 4>",
+        question: "What are media queries?",
+        choice1: "<Storing your data on an off-site server>",
+        choice2: "<The suffix to a website .com, .edu, .net>",
+        choice3: "<Allows content to render and adapt to different screen resolutions>",
+        choice4: "<PC, Mac, Linux, >",
         answer: 3
       },
       {
-        question: "Question 4?",
-        choice1: "<option 1>",
-        choice2: "<option 2>",
-        choice3: "<option 3>",
-        choice4: "<option 4>",
+        question: "What does CSS stand for?",
+        choice1: "<Concatentation string standard",
+        choice2: "<Color style sheet>",
+        choice3: "<Citing source samples>",
+        choice4: "<Cascading style sheet>",
         answer: 4
       },
 
