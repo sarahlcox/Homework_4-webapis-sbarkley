@@ -63,15 +63,17 @@ startGame = () => {
     score = 0;
     //point to the same thing, when we make changes to either one this needs to be a full copy of the questions array 
     availableQuestions = [...questions];
-    console.log(availableQuestions);
+    // console.log(availableQuestions);
     getNewQuestion();
 
 };
 //need to create fx to pull a question from the question array that has not been used
 getNewQuestion = () => {
     //add if statement that if the array of questions runs out, to end the game
-    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-        return window.location.assign('/end.html');
+    if (availableQuestions.length === 0) {
+        localStorage.setItem("mostRecentScore",score);
+        // this goes to end game window
+        return window.location.assign("end.html");
     };
     questionCounter++;
     // add text dynamically to upper corner
