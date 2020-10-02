@@ -77,7 +77,7 @@ getNewQuestion = () => {
     };
     questionCounter++;
     // add text dynamically to upper corner
-    questionCounterText.innerText = questionCounter + "/" + MAX_QUESTIONS;
+    questionCounterText.innerText = questionCounter + "/" + 4;
 //create variable to pull questions from unused questions
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
 //reference current question and pull from available questions
