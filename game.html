@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="game.css">
 
@@ -16,9 +17,17 @@
             <div id= "hud">
                 <div id="hud-item">
                     <p class= "hud-prefix">
-                        Question
+                        Question:
                     </p>
                     <h1 class="hud-main-text" id="questionCounter">
+                    </h1>
+                </div>
+                <div id="hud-item">
+                    <p class= "hud-prefix">
+                        Seconds Remaining: 
+                    </p>
+                    <h1 class="hud-main-text" id="secondsRemaining">
+                        <span id="timer"></span>
                     </h1>
                 </div>
                 <div id="hud-item">

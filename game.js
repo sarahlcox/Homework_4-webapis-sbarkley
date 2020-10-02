@@ -9,6 +9,7 @@ const scoreText = document.getElementById('score');
 let currentQuestion = {};
 //set var to false and have switch to truevia fx on line 85
 let acceptingAnswers = false; 
+var timer = 60;
 let score = 0;
 //what question you are on
 let questionCounter=0;
@@ -56,11 +57,27 @@ const CORRECT_BONUS = 10;
 //this is going to be how many questions does a user get before they finish the test
 const MAX_QUESTIONS = 3;
 
+function startTimer() {
+    startGame();
+    timer = setInterval(function() {
+    secondsRemaining -= 1;
+        //   console.log(secondsRemaining);
+          var timerDisplay = document.getElementById("countdown");
+          timerDisplay.textContent = secondsRemaining;
+      
+          if (secondsRemaining === 0) {
+            clearInterval(timer);
+            window.location.href = "highscore.html";
+          }
+        }, 1000);
+      }
+      
 // First function to to start quiz and timer 
 // Timer starts when quiz starts (set interval)  setInterval(someFunction, seconds*1000) 
 startGame = () => {
     questionCounter = 0;
     score = 0;
+    timer = 60;
     //point to the same thing, when we make changes to either one this needs to be a full copy of the questions array 
     availableQuestions = [...questions];
     // console.log(availableQuestions);
