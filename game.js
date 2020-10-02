@@ -3,13 +3,17 @@
 // declare global variables - user score, quiz container, high score
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
-console.log(choices);
+const questionCounterText = document.getElementById('questionCounter');
+const scoreText = document.getElementById('score');
+// console.log(choices);
 let currentQuestion = {};
-let acceptingAnswers = true; 
+//set var to false and have switch to truevia fx on line 85
+let acceptingAnswers = false; 
 let score = 0;
+//what question you are on
 let questionCounter=0;
+//take questions out of the array as they are used to present new question each time
 let availableQuestions=[];
-
 // declare someFunction[Create array of questions as objects - questions, options, and/or [booleans]//declare global variables
 let questions = [
     {
@@ -57,59 +61,69 @@ const MAX_QUESTIONS = 3;
 startGame = () => {
     questionCounter = 0;
     score = 0;
-    availableQuesions = [...questions];
-    console.log(available questions);
+    //point to the same thing, when we make changes to either one this needs to be a full copy of the questions array 
+    availableQuestions = [...questions];
+    console.log(availableQuestions);
     getNewQuestion();
+
 };
-
+//need to create fx to pull a question from the question array that has not been used
 getNewQuestion = () => {
-    if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-        //go to the end page
+    //add if statement that if the array of questions runs out, to end the game
+    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         return window.location.assign('/end.html');
-    }
+    };
     questionCounter++;
-    const questionIndex = Math.floor(Math.random() * availableQuesions.length);
-    currentQuestion = availableQuesions[questionIndex];
+    // add text dynamically to upper corner
+    questionCounterText.innerText = questionCounter + "/" + MAX_QUESTIONS;
+//create variable to pull questions from unused questions
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+//reference current question and pull from available questions
+    currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
-
+//references each answer choice using data set from html file
     choices.forEach(choice => {
         const number = choice.dataset["number"];
+    //out of the current question, we use the number to get the answer from the data attribute number
         choice.innerText = currentQuestion["choice" + number];
     });
-
-    availableQuesions.splice(questionIndex, 1);
-    // console.log(availableQuestions);
+    //cut out the question that we just used from the array
+    availableQuestions.splice(questionIndex, 1);
+    //after question is loaded the question, and THEN the user can answer
     acceptingAnswers = true;
-    // console.log(acceptingAnswers);
 };
 
-// Rotation of questions for the quiz, within our question array, we need to pull the objects  from the array  
+//set fx that allows click and pick answer
 choices.forEach(choice => {
-    choice.addEventListener('click', (e) => {
-        if (!acceptingAnswers) return;
-
-        acceptingAnswers = false;
+    choice.addEventListener("click", e => {
+        // console.log(e.target);
+        //not ready for them to answer
+        if(!acceptingAnswers) return;
+        //create a delay so they can't choose right away, and then when answer is selected it gets new question
+        acceptingAnswers= false;
         const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset['number'];
-        // console.log(selectedAnswer);
-        getNewQuestion();
+        const selectedAnswer = selectedChoice.dataset["number"];
+        //set classes for correct or incorrect answers 
+        const classToApply= 
+            selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+            if (classToApply === 'correct'){
+                incrementScore(CORRECT_BONUS);
+            }
+//changes color effect on answer picked by user and set timeout or prevent default before the class is removed, and delay for 1 second
+            selectedChoice.parentElement.classList.add(classToApply);
+            setTimeout( () => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+        // console.log(selectedAnswer == currentQuestion.answer);
+            getNewQuestion();
+            }, 1000);
+
     });
 });
 
-// function selectAnswer()
-acceptingAnswers = false;
-const selectedChoice = e.target;
-const selectedAnswer = selectedChoice.dataset["number"];
-
-const classToApply =
-  selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-
-selectedChoice.parentElement.classList.add(classToApply);
-
-setTimeout(() => {
-  selectedChoice.parentElement.classList.remove(classToApply);
-  getNewQuestion();
-}, 1000);
-});
+// increment score fx and add to text in upper corner 
+incrementScore = num => {
+    score +=num;
+    scoreText.innerText= score;
+}
 
 startGame();
