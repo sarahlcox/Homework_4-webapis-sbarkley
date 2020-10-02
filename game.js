@@ -1,4 +1,5 @@
 //working in a study group with Matt Hiatt, Erik Tomlinson, and Jake Wagner
+var timerContainer = document.getElementById('timer');
 
 // declare global variables - user score, quiz container, high score
 const question = document.getElementById("question");
@@ -55,12 +56,20 @@ let questions = [
 const CORRECT_BONUS = 10;
 //this is going to be how many questions does a user get before they finish the test
 const MAX_QUESTIONS = 3;
+var timeLeft = 60;
 
+      
 // First function to to start quiz and timer 
 // Timer starts when quiz starts (set interval)  setInterval(someFunction, seconds*1000) 
 startGame = () => {
+    var timeInterval = setInterval(function() {
+        console.log("hello")
+      timerContainer.textContent = timeLeft + " seconds remaining";
+      timeLeft--;
+        }, 1000);
     questionCounter = 0;
     score = 0;
+    timeLeft = 60;
     //point to the same thing, when we make changes to either one this needs to be a full copy of the questions array 
     availableQuestions = [...questions];
     // console.log(availableQuestions);
@@ -69,8 +78,9 @@ startGame = () => {
 };
 //need to create fx to pull a question from the question array that has not been used
 getNewQuestion = () => {
+    console.log("functionrunning")
     //add if statement that if the array of questions runs out, to end the game
-    if (availableQuestions.length === 0) {
+    if (availableQuestions.length === 0 || timeLeft === 0) {
         localStorage.setItem("mostRecentScore",score);
         // this goes to end game window
         return window.location.assign("end.html");
@@ -83,6 +93,8 @@ getNewQuestion = () => {
 //reference current question and pull from available questions
     currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
+    console.log(question)
+    console.log(currentQuestion)
 //references each answer choice using data set from html file
     choices.forEach(choice => {
         const number = choice.dataset["number"];
@@ -107,10 +119,13 @@ choices.forEach(choice => {
         const selectedAnswer = selectedChoice.dataset["number"];
         //set classes for correct or incorrect answers 
         const classToApply= 
-            selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-            if (classToApply === 'correct'){
-                incrementScore(CORRECT_BONUS);
-            }
+            selectedAnswer == currentQuestion.answer ? incrementScore(CORRECT_BONUS):timeLeft-=5;
+            // if (classToApply === 'correct'){
+                // incrementScore(CORRECT_BONUS);
+    
+            // if (classToApply === 'incorrect'){
+                // timeLeft-=5;
+            
 //changes color effect on answer picked by user and set timeout or prevent default before the class is removed, and delay for 1 second
             selectedChoice.parentElement.classList.add(classToApply);
             setTimeout( () => {
