@@ -1,3 +1,4 @@
+/* answer container for all answers */
 .choice-container {
     display: flex;
     margin-bottom:0.5rem;
@@ -7,6 +8,7 @@
     background-color: white;
 }
 
+/* hover effect over answers */
 .choice-container:hover {
     cursor: pointer;
     box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
@@ -14,6 +16,7 @@
     transition: transform 150ms;
 }
 
+/* appearance of answers before hover effect */
 .choice-prefix {
     padding: 1.5rem 2.5rem;
     background-color: #56a5eb;
@@ -21,6 +24,7 @@
 
 }
 
+/* sets padding around the answer boxes */
 .choice-text{
     padding: 1.5rem;
 }

@@ -1,13 +1,16 @@
-//declare global variables
+//working in a study group with Matt Hiatt, Erik Tomlinson, and Jake Wagner
+
+// declare global variables - user score, quiz container, high score
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
-
+console.log(choices);
 let currentQuestion = {};
 let acceptingAnswers = true; 
 let score = 0;
 let questionCounter=0;
 let availableQuestions=[];
 
+// declare someFunction[Create array of questions as objects - questions, options, and/or [booleans]//declare global variables
 let questions = [
     {
         question: "Question 1?",
@@ -46,12 +49,16 @@ let questions = [
 
 //declare the points structure
 const CORRECT_BONUS = 10;
+//this is going to be how many questions does a user get before they finish the test
 const MAX_QUESTIONS = 3;
 
+// First function to to start quiz and timer 
+// Timer starts when quiz starts (set interval)  setInterval(someFunction, seconds*1000) 
 startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuesions = [...questions];
+    console.log(available questions);
     getNewQuestion();
 };
 
@@ -65,27 +72,44 @@ getNewQuestion = () => {
     currentQuestion = availableQuesions[questionIndex];
     question.innerText = currentQuestion.question;
 
-    choices.forEach((choice) => {
-        const number = choice.dataset['number'];
-        choice.innerText = currentQuestion['choice' + number];
+    choices.forEach(choice => {
+        const number = choice.dataset["number"];
+        choice.innerText = currentQuestion["choice" + number];
     });
 
     availableQuesions.splice(questionIndex, 1);
-    console.log(availableQuestions);
+    // console.log(availableQuestions);
     acceptingAnswers = true;
-    console.log(acceptingAnswers);
+    // console.log(acceptingAnswers);
 };
 
-choices.forEach((choice) => {
+// Rotation of questions for the quiz, within our question array, we need to pull the objects  from the array  
+choices.forEach(choice => {
     choice.addEventListener('click', (e) => {
         if (!acceptingAnswers) return;
 
         acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset['number'];
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
         getNewQuestion();
     });
+});
+
+// function selectAnswer()
+acceptingAnswers = false;
+const selectedChoice = e.target;
+const selectedAnswer = selectedChoice.dataset["number"];
+
+const classToApply =
+  selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+
+selectedChoice.parentElement.classList.add(classToApply);
+
+setTimeout(() => {
+  selectedChoice.parentElement.classList.remove(classToApply);
+  getNewQuestion();
+}, 1000);
 });
 
 startGame();
