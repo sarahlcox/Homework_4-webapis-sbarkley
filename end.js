@@ -5,7 +5,8 @@ const finalScore = document.getElementById('finalScore');
 const mostRecentScore = localStorage.getItem('mostRecentScore');
 // get high scores from local storage or return empty array if game not yet played 
 const highScores= JSON.parse(localStorage.getItem("highScores")) || [];
-console.log(highScores);
+// console.log(highScores);
+const MAX_HIGH_SCORES = 5;
 finalScore.innerText = mostRecentScore;
 
 
@@ -16,10 +17,17 @@ username.addEventListener('keyup', () => {
 saveHighScore = (e) => {
     // console.log("clicked the save button")
     e.preventDefault();
-
+// save scores to local storage
     const score = {
-        score: mostRecentScore,
+        score: Math.floor(Math.random() * 100),
         name: username.value
         };
     highScores.push(score);
+    // this will take the higher score and put it on top of the array
+    highScores.sort((a,b)=>b.score - a.score)
+    // only store 5 high scores
+    highScores.splice(5);
+    // console.log(highScores);
+    localStorage.setItem('highScores',JSON.stringify(highScores));
+    window.location.assign("newindex.html");
     };
